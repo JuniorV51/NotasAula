@@ -7,7 +7,7 @@ const options = {
     password:'26062001',
     database:'notas',
     host:'localhost',
-    dialect:'postgrs',
+    dialect:'postgres',
 };
 
 const sequelize = new Sequelize(options);
