@@ -1,4 +1,5 @@
-const { Sequelize } = require ('sequelize');
+const { Sequelize, DataTypes } = require ('sequelize');
+const _Usuario = require ('./usuario')
 const database = {};
 
 const options = {
@@ -11,6 +12,10 @@ const options = {
 };
 
 const sequelize = new Sequelize(options);
+
+let Usuario = _Usuario(sequelize, DataTypes);
+
+
 
 sequelize
     .authenticate()
