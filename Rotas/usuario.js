@@ -1,7 +1,7 @@
 
 const express = require ('express');
 const router = express.Router();
-const controller = require('../controller/usuario');
+const controller = require('../controller/default');
 const { Usuario } = require('../models');
 //const usuarios = [
  //   {id: 1, nome: 'Junior vendramini', email: 'junior_vendra@hotmail.com', Senha: 225588, avatar: 'masculino'},
@@ -12,8 +12,7 @@ const { Usuario } = require('../models');
 router.get('/id?', async (req, res) => {
     const { id } = req.params;
 
-
-    const usuario =  await controller.getUsuarios();
+    const usuario =  id ? await controller.getById(Usuario, id) : await controller.getAll(Usuario);
     res.send(usuarios || []);
 });
 
@@ -21,7 +20,7 @@ router.post('/',  async (req, res) => {
     try{
     const { boby } = req;
 
-    const usuario = await controller.save(boby);
+    const usuario = await controller.save(Usuario, body);
 
     res.send(usuario);
     }catch (error){
@@ -35,7 +34,7 @@ router.put('/:id', async (req, res) => {
         const { body } = req;
         const {id} = req.params;
 
-        const usuario = await controller.edit(id, body);
+        const usuario = await controller.edit(Usuario, body,  id );
 
         res.send(boby);
 
@@ -48,7 +47,7 @@ router.delete('/:id',  async (req, res) => {
     try{
       const { id } = req.params;
       
-      await controller.remove(id);
+      await controller.remove(Usuario, id);
 
       res.send({ id })
     } catch (error){

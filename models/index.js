@@ -1,6 +1,8 @@
 const { Sequelize, DataTypes } = require ('sequelize');
 const _Usuario = require ('./usuario');
-const _Nota = require ('./nota')
+const _Nota = require ('./nota');
+const _Tag = require ('./tag');
+const _Checklistt = require ('./checklist');
 const database = {};
 
 const options = {
@@ -16,9 +18,13 @@ const sequelize = new Sequelize(options);
 
 let Usuario = _Usuario(sequelize, DataTypes);
 let Nota = _Nota(sequelize, DataTypes);
+let Tag = _Tag(sequelize, DataTypes);
+let Checklist = _Checklistt(sequelize,DataTypes);
 
 database['Usuario'] = Usuario;
 database['Nota'] = Nota;
+database['Tag'] = Tag;
+database['Checklist'] = Checklist;
 
 console.log(database);
 for (const key in database) {

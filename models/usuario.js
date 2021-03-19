@@ -1,41 +1,42 @@
-
-module.exports = (sequelize, DataTypes) =>{
-    const Usuario = sequelize.define(
-        'Usuario', 
-    {
-        id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            primaryKey: true,
-            autoIncrement: true
-          },
-          nome: {
-            type: DataTypes.STRING,
-            allowNull: false
-          },
-          email: {
-            type: DataTypes.STRING,
-            allowNull: false
-          },
-          senha: {
-            type: DataTypes.STRING,
-            allowNull: false
-          },
-          avatar: {
-            type: DataTypes.STRING,
-            allowNull: true
-          }
+const Sequelize = require('sequelize');
+module.exports = function(sequelize, DataTypes) {
+  const Usuario = sequelize.define('usuario', {
+    id: {
+      autoIncrement: true,
+      autoIncrementIdentity: true,
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true
     },
-     {
-         table: 'usuario',
-         timestamps: false,
+    nome: {
+      type: DataTypes.STRING(200),
+      allowNull: false
+    },
+    email: {
+      type: DataTypes.STRING(200),
+      allowNull: false
+    },
+    senha: {
+      type: DataTypes.STRING(300),
+      allowNull: false
+    },
+    avatar: {
+      type: DataTypes.TEXT,
+      allowNull: true
     }
-  );
-    Usuario.associate = function (models) {
-      this.hasMany(models.Nota, {
-        foreignKey: 'usuarioId',
-      });
-    };
+  }, {
+    sequelize,
+    tableName: 'usuario',
+    schema: 'public',
+    timestamps: false,
+  });
 
-    return Usuario;
-}
+  Usuario.associate = function (models){
+    this.hasMany(models.Nota,{
+      foreigKey: 'usuarioId',
+    });
+  };
+  return Usuario;
+};
+
+

@@ -1,6 +1,6 @@
 const express = require ('express');
 const router = express.Router();
-const controller = require('../controller/tag');
+const controller = require('../controller/default');
 const { Tag } = require('../models');
 //const tags = [
   //  {Notaid: 2, idtag: 1, nome: 'Junior Vendramini'},
@@ -8,11 +8,11 @@ const { Tag } = require('../models');
 //]
 
 
-router.get('/idtag?',  async (req, res) => {
-    const { idtag } = req.params;
+router.get('/id?',  async (req, res) => {
+    const { id } = req.params;
 
 
-    const tag =  await controller.gettags();
+    const tag =  id ? await controller.getById(Tag, id) : await controller.getAll(Tag);
     res.send(tags || []);
 });
 
@@ -20,7 +20,7 @@ router.post('/',  async (req, res) => {
     try{
         const { boby } = req;
     
-        const tag = await controller.save(boby);
+        const tag = await controller.save(Tag, boby);
     
         res.send(tag);
         }catch (error){
@@ -29,12 +29,12 @@ router.post('/',  async (req, res) => {
         }
 });
 
-router.put('/:idtag', async (req, res) => {
+router.put('/:id', async (req, res) => {
     try{
         const { body } = req;
-        const {idtag} = req.params;
+        const {id} = req.params;
 
-        const tag = await controller.edit(idtag, body);
+        const tag = await controller.edit(Tag, body, id);
 
         res.send(boby);
 
@@ -43,13 +43,13 @@ router.put('/:idtag', async (req, res) => {
     }
 });
 
-router.delete('/:idtag', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try{
-        const { idtag } = req.params;
+        const { id } = req.params;
         
-        await controller.remove(idtag);
+        await controller.remove(Tag, id);
   
-        res.send({ idtag })
+        res.send({ id })
       } catch (error){
           res.status(500).send({ error });
       }

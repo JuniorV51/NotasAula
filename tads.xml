@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE TADS [
+<!ELEMENT TADS (disciplina)>
+<!ELEMENT disciplina (nome,carga,turma,professor,ano)>
+<!ELEMENT nome (#PCDATA)>
+<!ELEMENT carga (#PCDATA)>
+<!ELEMENT turma (#PCDATA)>
+<!ELEMENT professor (#PCDATA)>
+<!ELEMENT ano (#PCDATA)>
+<!ELEMENT alunos (aluno)>
+<!ELEMENT aluno (#PCDATA)>
+]>
+<TADS>
+    <disciplina>
+        <nome> empreendorismo e plano de negocio </nome>
+        <carga> 100  </carga>
+        <turma> 1a </turma>
+        <professor> leandro </professor>
+        <ano> 2021/1 </ano>
+    </disciplina>
+        <alunos>
+            <aluno> Gustavo </aluno>
+        </alunos>
+        <alunos>    
+            <aluno> felipe </aluno>
+        </alunos>
+        <alunos>
+            <aluno> mayra </aluno>
+        </alunos>
+    <disciplina>
+        <nome> optativa </nome>
+        <carga> 75  </carga>
+        <turma> 1a </turma>
+        <professor> heytor </professor>
+        <ano> 2021/1 </ano>
+    </disciplina>
+        <alunos>
+            <aluno> Gabriel </aluno>
+        </alunos>
+        <alunos>
+            <aluno> Gustavo felipe </aluno>
+        </alunos>
+        <alunos>
+            <aluno> maycon </aluno>
+        </alunos>
+    <disciplina>
+        <nome> pratica em desevolvimento de sistema  </nome>
+        <carga> 500  </carga>
+        <turma> 1a </turma>
+        <professor> pedro </professor>
+        <ano> 2021/1 </ano>
+    </disciplina>
+        <alunos>
+            <aluno> leo </aluno>
+        </alunos>
+        <alunos>
+            <aluno> felipe </aluno>
+        </alunos>
+        <alunos>
+            <aluno> anderson </aluno>
+        </alunos>
+    <disciplina>
+        <nome> programação para dispositivos moveis </nome>
+        <carga> 500  </carga>
+        <turma> 1a </turma>
+        <professor> ricardo </professor>
+        <ano> 2021/1 </ano>
+    </disciplina>
+        <alunos>
+            <aluno> Gustavo </aluno>
+        </alunos>
+        <alunos>
+            <aluno> junior </aluno>
+        </alunos>
+        <alunos>
+            <aluno> fernanda </aluno>
+        </alunos>
+    <disciplina>
+        <nome> programaçaõ web </nome>
+        <carga> 500 </carga>
+        <turma> 1a </turma>
+        <professor> Marcelo </professor>
+        <ano> 2021/1 </ano>
+    </disciplina>
+        <alunos>
+            <aluno> Gustavo </aluno>
+        </alunos>
+        <alunos>
+            <aluno> junior </aluno>
+        </alunos>
+        <alunos>
+            <aluno>  gabriel </aluno>
+        </alunos>
+    <disciplina>
+        <nome> programação em web avançado  </nome>
+        <carga> 500 </carga>
+        <turma> 1a </turma>
+        <professor> Marcelo </professor>
+        <ano> 2021/2 </ano>
+    </disciplina> 
+        <alunos>
+            <aluno> Gustavo </aluno>
+        </alunos>
+        <alunos>
+            <aluno> junior </aluno>
+        </alunos>
+        <alunos>
+            <aluno> marcos </aluno>
+        </alunos> 
+</TADS> 

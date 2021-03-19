@@ -1,7 +1,7 @@
 
 const express = require ('express');
 const router = express.Router();
-const controller = require('../controller/checklist');
+const controller = require('../controller/default');
 const { Checklist } = require('../models');
 //const chacklists = [
     //{idchec: 1, Notaid: 2, descrição: 'Entrega em um bar no centro de campo mourao', Concluida: 'sim'},
@@ -9,11 +9,12 @@ const { Checklist } = require('../models');
 //]
 
 
-router.get('/idchec?',  async (req, res) => {
-    const { idchec } = req.params;
+router.get('/id?',  async (req, res) => {
+    const { id } = req.params;
 
 
-    const checklist =  await controller.getChecklist();
+     const checklist =  id ? await controller.getById(Checklist, id) : await controller.getAll(Checklist);
+
     res.send(checklists || []);
 });
 
@@ -21,7 +22,7 @@ router.post('/',  async (req, res) => {
     try{
         const { boby } = req;
     
-        const checklist = await controller.save(boby);
+        const checklist = await controller.save(Checklist, boby);
     
         res.send(checklist);
         }catch (error){
@@ -30,12 +31,12 @@ router.post('/',  async (req, res) => {
         }
 });
 
-router.put('/:idchec', async (req, res) => {
+router.put('/:id', async (req, res) => {
     try{
         const { body } = req;
-        const {idchec} = req.params;
+        const {id} = req.params;
 
-        const checklist = await controller.edit(idchec, body);
+        const checklist = await controller.edit(Checklist, body, id);
 
         res.send(boby);
 
@@ -44,13 +45,13 @@ router.put('/:idchec', async (req, res) => {
     }
 });
 
-router.delete('/:idchec', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try{
-        const { idchec } = req.params;
+        const { id } = req.params;
         
-        await controller.remove(idchec);
+        await controller.remove(Checklist, id);
   
-        res.send({ idchec })
+        res.send({ id })
       } catch (error){
           res.status(500).send({ error });
       }
