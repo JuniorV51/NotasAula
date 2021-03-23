@@ -41,7 +41,7 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Nota.associate = function (models){
-    this.belogsTo(models.Usuario, {
+    this.belongsTo(models.Usuario, {
         foreignkey: 'usuarioId',
 
     });

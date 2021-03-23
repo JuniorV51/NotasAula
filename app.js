@@ -4,9 +4,11 @@ const usuario = require('./rotas/usuario');
 const nota = require ('./rotas/nota');
 const checklist = require ('./rotas/checklist');
 const tag = require ('./rotas/tag');
+const login = require ('./rotas/login');
+const auth = require('./middlewares/auth');
 const fs = require('fs');
 const https = require('https');
-const cors = requere ('cors');
+const cors = require ('cors');
 const app = express();
 const port = 3000;
 const portaHttps = 443;
@@ -17,6 +19,8 @@ app.use(cors({
 );
 app.use(bodyParser.json());
 
+app.use('/login', login);
+app.use(auth);
 app.use('/tag', tag);
 app.use('/checklist', checklist);
 app.use('/nota', nota);

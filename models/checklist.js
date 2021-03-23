@@ -30,5 +30,10 @@ module.exports = function(sequelize, DataTypes) {
     timestamps: false,
   });
 
+  Checklist.associate = function(models) {
+    this.belongsTo(models.Nota,{
+        foreignKey: 'notaId',
+    });
+};
   return Checklist;
 };

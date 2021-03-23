@@ -45,7 +45,7 @@ Nota.findAll({
 
 sequelize
     .authenticate()
-    .then(() => console.log(`Conexão com o banco ${options.databse} realizada com sucesso`))
+    .then(() => console.log(`Conexão com o banco ${options.database} realizada com sucesso`))
     .catch((error)=> console.log(`Falha ai conectar ao banco ${options.database}: ${error}`));
 
 
