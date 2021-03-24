@@ -9,22 +9,23 @@ const { Usuario } = require('../models');
 //]
 
 
-router.get('/id?', async (req, res) => {
+router.get('/:id?', async (req, res) => {
     const { id } = req.params;
 
     const usuario =  id ? await controller.getById(Usuario, id) : await controller.getAll(Usuario);
-    res.send(usuarios || []);
+    res.send(usuario || []);
 });
 
 router.post('/',  async (req, res) => {
     try{
-    const { boby } = req;
+    const { body } = req;
 
     const usuario = await controller.save(Usuario, body);
 
     res.send(usuario);
     }catch (error){
-        res.status(500),send({ error })
+        console.log(error);
+        res.status(500).send({ error })
 
     }
 });

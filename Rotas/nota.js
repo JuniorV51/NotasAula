@@ -8,19 +8,19 @@ const { Nota } = require('../models');
 
 //]
 
-router.get('/id?', async (req, res) => {
+router.get('/:id?', async (req, res) => {
     const { id } = req.params;
 
 
     const nota =  id ? await controller.getById(Nota, id) : await controller.getAll(Nota);
-    res.send(notas || []);
+    res.send(nota || []);
 });
 
 router.post('/',  async (req, res) => {
     try{
-        const { boby } = req;
+        const { body } = req;
     
-        const nota = await controller.save(Nota, boby);
+        const nota = await controller.save(Nota, body);
     
         res.send(nota);
         }catch (error){

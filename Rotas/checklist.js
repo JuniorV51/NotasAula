@@ -9,20 +9,20 @@ const { Checklist } = require('../models');
 //]
 
 
-router.get('/id?',  async (req, res) => {
+router.get('/:id?',  async (req, res) => {
     const { id } = req.params;
 
 
      const checklist =  id ? await controller.getById(Checklist, id) : await controller.getAll(Checklist);
 
-    res.send(checklists || []);
+    res.send(checklist || []);
 });
 
 router.post('/',  async (req, res) => {
     try{
-        const { boby } = req;
+        const { body } = req;
     
-        const checklist = await controller.save(Checklist, boby);
+        const checklist = await controller.save(Checklist, body);
     
         res.send(checklist);
         }catch (error){

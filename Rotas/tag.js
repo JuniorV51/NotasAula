@@ -8,19 +8,19 @@ const { Tag } = require('../models');
 //]
 
 
-router.get('/id?',  async (req, res) => {
+router.get('/:id?',  async (req, res) => {
     const { id } = req.params;
 
 
     const tag =  id ? await controller.getById(Tag, id) : await controller.getAll(Tag);
-    res.send(tags || []);
+    res.send(tag || []);
 });
 
 router.post('/',  async (req, res) => {
     try{
-        const { boby } = req;
+        const { body } = req;
     
-        const tag = await controller.save(Tag, boby);
+        const tag = await controller.save(Tag, body);
     
         res.send(tag);
         }catch (error){

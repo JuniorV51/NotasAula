@@ -5,7 +5,7 @@ controller.getById= async (model, id) => {
 };
 
 controller.getAll = async (model) => {
-    return await model.findAll(where);
+    return await model.findAll();
 };
 
 controller.save = async (model, objeto) =>{
