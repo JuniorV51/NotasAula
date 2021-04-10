@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require("bcrypt");
-const { Usuario } = require('../models');
+const { Usuario, Nota, Checklist, Tag, sequelize } = require('../models');
 const { secret } = require('../config/seguranca');
 const controller = {};
 
@@ -62,6 +62,58 @@ controller.getUsuario = async (id = null) => {
             throw new Error(error);
         }
     };
+
+    controller.edit = async ({ usuarioId, titulo = null, descricao = null, checklist = [], tags = []})  => {
+        const transaction = await sequelize.transaction();
+        try {
+            let {dataValues} = await Nota.edit({
+                usuarioId, 
+                titulo,
+                descricao,
+            }, 
+            {
+              transaction,
+            }
+            );
+    
+            let notaSalva = dataValues;
+            let checklistsSalvos = [];
+    
+                if(checklist.length > 0) {
+            for(let checklist of checklist){
+                checklist = {...checklist, notaId: notaSalva.id};
+    
+    
+                const checklistEdit = await Checklist.edit(checklist, {
+                   transaction,
+                });
+                checklistsEdit.push(checklistEdit);
+            }
+    
+            let tagsEdit = [];
+        
+        }   
+            if(tags.length > 0) {
+            for(let tag of tag){
+                tag = {...tag, notaId: notaSalva.id};
+    
+                const tagEdit = await Tag.edit(tag,{
+                    transaction,
+                });
+                tagsSalvas = [...tagsEdit, tagEdit];
+            }
+        }
+    
+             notaEdit = { ...notaEdit, Checklist: checklistsEdit, tags: tagsEdit};
+            await transaction.commit();
+    
+    
+            return notaEdit;
+        } catch (error) {
+            console.log(error);
+            await transaction.rollback();
+        }
+    }
 
 
     module.exports = controller;
